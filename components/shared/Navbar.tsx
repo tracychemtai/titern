@@ -56,10 +56,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-[11px] uppercase tracking-[0.3em] font-medium
-                  opacity-60 hover:opacity-100
-                  hover:text-[var(--stroke-color)]
-                  transition-all duration-300"
+                className="text-[11px] uppercase tracking-[0.3em] font-medium opacity-60 hover:opacity-100 hover:text-[var(--stroke-color)] transition-all duration-300"
               >
                 {link.name}
               </Link>
@@ -67,10 +64,7 @@ export default function Navbar() {
 
             <Link
               href="/contact"
-              className="px-8 py-3 bg-[var(--foreground)] text-[var(--background)]
-                text-[10px] uppercase tracking-[0.2em] font-bold
-                hover:bg-[var(--stroke-color)] hover:text-white hover:-translate-y-1.5
-                transition-all duration-500"
+              className="px-8 py-3 bg-[var(--foreground)] text-[var(--background)] text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-[var(--stroke-color)] hover:text-white hover:-translate-y-1.5 transition-all duration-500"
             >
               Get Quote
             </Link>
@@ -104,20 +98,16 @@ export default function Navbar() {
       >
         <div className="absolute inset-0 bg-[var(--background)]/95 backdrop-blur-2xl" />
         <div
-          className={`relative h-full flex flex-col justify-center items-center gap-8
-            transition-transform duration-700 ${
-              isSidebarOpen ? "translate-y-0" : "translate-y-10"
-            }`}
+          className={`relative h-full flex flex-col justify-center items-center gap-8 transition-transform duration-700 ${
+            isSidebarOpen ? "translate-y-0" : "translate-y-10"
+          }`}
         >
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setIsSidebarOpen(false)}
-              className="text-5xl font-black uppercase tracking-tighter
-                text-[var(--foreground)] opacity-20
-                hover:opacity-100 hover:text-[var(--stroke-color)]
-                transition-all duration-500"
+              className="text-5xl font-black uppercase tracking-tighter text-[var(--foreground)] opacity-20 hover:opacity-100 hover:text-[var(--stroke-color)] transition-all duration-500"
             >
               {link.name}
             </Link>
