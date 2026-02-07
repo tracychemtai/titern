@@ -1,49 +1,57 @@
-import { Shield, Target, Users, Leaf } from 'lucide-react'
+import { Shield, Target, Users, Leaf } from "lucide-react";
 
 export default function Features() {
-  const features = [
-    {
-      icon: <Shield />,
-      title: 'Quality Assurance',
-      description: 'Consistent production of strong, durable, and precise concrete products.'
-    },
-    {
-      icon: <Target />,
-      title: 'Customer Focus',
-      description: 'Tailored solutions to meet specific client requirements.'
-    },
-    {
-      icon: <Users />,
-      title: 'Integrity',
-      description: 'Honest business practices and reliable delivery.'
-    },
-    {
-      icon: <Leaf />,
-      title: 'Sustainability',
-      description: 'Environmentally responsible manufacturing practices.'
-    }
-  ]
+  const values = [
+    { icon: <Shield size={20} />, title: "Quality", desc: "Precision concrete for durable builds." },
+    { icon: <Target size={20} />, title: "Focus", desc: "Tailored client-specific solutions." },
+    { icon: <Users size={20} />, title: "Integrity", desc: "Honest and reliable delivery." },
+    { icon: <Leaf size={20} />, title: "Sustainability", desc: "Environmentally responsible manufacturing." },
+  ];
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Core Values</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">What we stand for and believe in</p>
+    <section className="py-32 bg-[var(--background)] border-t border-[var(--card-border)] transition-colors duration-500">
+      <div className="container mx-auto px-6">
+        <div className="mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[var(--foreground)]">
+            Core{" "}
+            <span
+              className="italic text-transparent"
+              style={{ WebkitTextStroke: "1px var(--stroke-color)" }}
+            >
+              Values
+            </span>
+          </h2>
+
+          <p className="max-w-xs text-sm uppercase tracking-widest leading-relaxed text-[color:color-mix(in srgb, var(--foreground) 60%, transparent)]">
+            Standardized precision for large-scale development and residential architecture.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-lg flex items-center justify-center mb-4">
-                {feature.icon}
+        <div className="grid md:grid-cols-4 gap-0 border border-[var(--card-border)]">
+          {values.map((v, i) => (
+            <div
+              key={i}
+              className="p-12 border-b md:border-b-0 md:border-r last:border-r-0 border-[var(--card-border)]
+                hover:bg-[color-mix(in srgb, var(--foreground) 4%, transparent)] transition-all group"
+            >
+              <div
+                className="mb-8 transform group-hover:-translate-y-2 transition-transform"
+                style={{ color: "var(--stroke-color)" }}
+              >
+                {v.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+
+              <h3 className="uppercase tracking-widest text-sm font-bold mb-4 text-[var(--foreground)]">
+                {v.title}
+              </h3>
+
+              <p className="text-xs leading-relaxed uppercase tracking-wider text-[color:color-mix(in srgb, var(--foreground) 60%, transparent)]">
+                {v.desc}
+              </p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

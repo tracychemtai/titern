@@ -1,133 +1,171 @@
-import { Truck, Settings, CheckCircle, Headphones } from 'lucide-react'
+"use client";
+
+import Image from "next/image";
+import { MoveRight, ShieldCheck, Factory, Zap } from "lucide-react";
+import { Cul2, RoadKerb, WallCopping } from "@/public/assets";
 
 export default function ServicesPage() {
-  const services = [
+  const productSectors = [
     {
-      icon: <Truck className="w-12 h-12" />,
-      title: 'Supply & Delivery',
-      description: 'Timely delivery of precast concrete products to your construction site across Kenya.',
-      features: ['On-time delivery', 'Proper handling', 'Nationwide coverage']
+      id: "01",
+      title: "Road & Paving Infrastructure",
+      description:
+        "Precision-engineered components for heavy-duty transit and urban walkways.",
+      products: [
+        "Road Kerbs",
+        "Road Channels",
+        "Paving Slabs",
+        "Cabro Blocks (60mm & 80mm)",
+        "Side Slabs",
+      ],
+      image: RoadKerb,
     },
     {
-      icon: <Settings className="w-12 h-12" />,
-      title: 'Custom Manufacturing',
-      description: 'Custom precast products manufactured to your specific project requirements.',
-      features: ['Design consultation', 'Custom molds', 'Project-specific solutions']
+      id: "02",
+      title: "Water & Drainage Systems",
+      description:
+        "Standardized hydraulic solutions for effective water management and civil works.",
+      products: [
+        "IBD 300mm",
+        "Shallow Drains",
+        "Culverts (300mm - 900mm Range)",
+      ],
+      image: Cul2,
     },
     {
-      icon: <CheckCircle className="w-12 h-12" />,
-      title: 'Quality Assurance',
-      description: 'Rigorous quality control processes ensuring top-notch product standards.',
-      features: ['Material testing', 'Production monitoring', 'Final inspection']
+      id: "03",
+      title: "Architectural Finishing",
+      description:
+        "Refining the aesthetic and structural longevity of perimeter walls and buildings.",
+      products: ["Wall Coping", "Pillow Coping (400mm)"],
+      image: WallCopping,
     },
-    {
-      icon: <Headphones className="w-12 h-12" />,
-      title: 'Technical Support',
-      description: 'Expert advice and support for your concrete construction projects.',
-      features: ['Installation guidance', 'Technical consultation', 'After-sales support']
-    }
-  ]
-
-  const projects = [
-    'Road construction projects',
-    'Urban infrastructure development',
-    'Real estate developments',
-    'Industrial construction',
-    'Government infrastructure',
-    'Commercial buildings'
-  ]
+  ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-gray-800 to-gray-600 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Comprehensive concrete solutions for your construction needs
-          </p>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">What We Offer</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              End-to-end concrete solutions from manufacturing to delivery and support
+    <div className="bg-[var(--background)] text-[var(--foreground)] pt-40 pb-20 transition-colors duration-500 selection:bg-[var(--stroke-color)]/30">
+      <div className="container mx-auto px-6">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-32 border-b border-[var(--card-border)] pb-16">
+          <div className="max-w-2xl">
+            <h1 className="text-6xl md:text-9xl font-light tracking-[-0.04em] leading-[0.85]">
+              The{" "}
+              <span className="italic font-serif opacity-40">
+                Portfolio
+              </span>
+            </h1>
+            <p className="mt-8 text-gray-500 text-xs uppercase tracking-[0.4em] leading-loose">
+              Setting new standards in precast manufacturing <br />
+              across Kenya since July 2024.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {services.map((service, index) => (
-              <div key={index} className="bg-white border border-gray-200 rounded-xl p-8 shadow-lg">
-                <div className="text-yellow-600 mb-4">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center">
-                      <span className="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          {/* Project Types */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-8 text-center">Projects We Serve</h3>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {projects.map((project, index) => (
-                <div key={index} className="bg-gray-50 p-6 rounded-lg text-center">
-                  <div className="text-3xl mb-3">🏗️</div>
-                  <p className="font-medium">{project}</p>
-                </div>
-              ))}
+          <div className="hidden lg:block text-right">
+            <div className="text-[var(--stroke-color)] font-mono text-sm mb-2">
+              KEBS COMPLIANT
             </div>
-          </div>
-
-          {/* Process */}
-          <div className="bg-gray-900 text-white p-8 rounded-xl">
-            <h3 className="text-2xl font-bold mb-6 text-center">Our Process</h3>
-            <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-xl">1</span>
-                </div>
-                <h4 className="font-semibold mb-2">Consultation</h4>
-                <p className="text-gray-300 text-sm">Understanding your requirements</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-xl">2</span>
-                </div>
-                <h4 className="font-semibold mb-2">Manufacturing</h4>
-                <p className="text-gray-300 text-sm">Quality-controlled production</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-xl">3</span>
-                </div>
-                <h4 className="font-semibold mb-2">Delivery</h4>
-                <p className="text-gray-300 text-sm">Safe and timely delivery</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-xl">4</span>
-                </div>
-                <h4 className="font-semibold mb-2">Support</h4>
-                <p className="text-gray-300 text-sm">Ongoing technical support</p>
-              </div>
+            <div className="text-[var(--foreground)]/20 text-[10px] tracking-widest uppercase font-bold">
+              Ref No: TCS/PRD/2024
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Sectors */}
+        <div className="space-y-40">
+          {productSectors.map((sector) => (
+            <div key={sector.id} className="grid lg:grid-cols-12 gap-12 group">
+              <div className="lg:col-span-5 flex flex-col justify-between">
+                <div>
+                  <span className="text-[var(--stroke-color)] font-mono text-lg mb-6 block font-bold">
+                    {sector.id} //
+                  </span>
+                  <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-6 group-hover:translate-x-2 transition-transform duration-500">
+                    {sector.title}
+                  </h2>
+                  <p className="text-gray-500 text-sm max-w-sm leading-relaxed mb-8">
+                    {sector.description}
+                  </p>
+                </div>
+
+                <div className="grid gap-4">
+                  {sector.products.map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center space-x-4 border-l border-[var(--card-border)]
+                        pl-6 py-2 hover:border-[var(--stroke-color)]
+                        transition-colors duration-300"
+                    >
+                      <span className="text-[10px] uppercase tracking-widest opacity-60">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Image */}
+              <div className="lg:col-span-7">
+                <div className="relative aspect-video overflow-hidden border border-[var(--card-border)]
+                  bg-[color-mix(in srgb, var(--foreground) 6%, transparent)]"
+                >
+                  <Image
+                    src={sector.image}
+                    alt={sector.title}
+                    fill
+                    className="object-cover grayscale group-hover:grayscale-0
+                      group-hover:scale-105 transition-all duration-1000
+                      opacity-60 group-hover:opacity-100"
+                  />
+
+                  <div className="absolute md:flex hidden inset-0 items-center justify-center pointer-events-none">
+                    <span className="text-[var(--foreground)]/25 text-8xl font-black uppercase italic tracking-tighter select-none">
+                      {sector.title.split(" ")[0]}
+                    </span>
+                  </div>
+
+                  <div className="absolute bottom-0 right-0 p-8 z-20">
+                    <div
+                      className="w-16 h-16 bg-black/40 backdrop-blur-md flex items-center justify-center
+                        border border-[var(--card-border)]
+                        group-hover:bg-[var(--stroke-color)]
+                        group-hover:text-white
+                        transition-all duration-500"
+                    >
+                      <MoveRight className="w-6 h-6" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Capability Grid */}
+        <div className="mt-60 grid md:grid-cols-3 gap-12
+          bg-[color-mix(in srgb, var(--foreground) 5%, transparent)]
+          p-12 border border-[var(--card-border)]"
+        >
+          {[ShieldCheck, Factory, Zap].map((Icon, i) => (
+            <div key={i} className="flex flex-col gap-6">
+              <Icon className="text-[var(--stroke-color)] w-8 h-8" />
+              <h4 className="uppercase tracking-widest text-sm font-bold">
+                {[
+                  "Standardized Testing",
+                  "Custom Production",
+                  "Efficient Delivery",
+                ][i]}
+              </h4>
+              <p className="text-gray-500 text-[10px] leading-loose uppercase tracking-wider">
+                {[
+                  "Compressive strength checks for every batch to meet Kenya Building Standards.",
+                  "Tailored precast molds for unique project specifications and infrastructure goals.",
+                  "Optimized logistics network ensuring timely delivery for site-critical timelines.",
+                ][i]}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  )
+  );
 }

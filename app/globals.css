@@ -1,21 +1,56 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer base {
+  :root, [data-theme='light'] {
+    --background: #ffffff;
+    --foreground: #000000;
+    --stroke-color: #4E67A5;
+    --card-border: rgba(0, 0, 0, 0.1);
+  }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  .dark, [data-theme='dark'] {
+    --background: #0a0a0a;
+    --foreground: #ffffff;
+    --stroke-color: #DDB700;
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    /* Cinematic color transition */
+    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
+  }
+
+
+.product-card {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+::selection {
+  background: rgba(78, 103, 165, 0.2); /* Subtle blue selection in light mode */
+  color: inherit;
+}
+
+.dark ::selection {
+  background: rgba(234, 179, 8, 0.3); /* Gold selection in dark mode */
+}
+@layer components {
+  .text-outline-custom {
+    -webkit-text-stroke: 1px #4E67A5;
+  }
+  
+  :is(.dark) .text-outline-custom {
+    -webkit-text-stroke: 1px #DDB700;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ffffff;
+    --stroke-color: #DDB700;
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
 }

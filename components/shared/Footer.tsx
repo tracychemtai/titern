@@ -1,51 +1,89 @@
-import Link from 'next/link'
-import { Phone, Mail, Globe } from 'lucide-react'
+import Link from "next/link";
+import Image from "next/image";
+import LogoDark from "@/public/assets/Logo.png";
+import LogoLight from "@/public/assets/Logo2.2.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-2xl font-bold mb-4">TITERN Concrete Solutions Ltd</h3>
-            <p className="text-gray-300">
-              Quality precast concrete products for construction, infrastructure, and real estate sectors.
-            </p>
-          </div>
+    <footer className="bg-[var(--background)] text-[var(--foreground)] pt-24 pb-12 border-t border-[var(--card-border)] transition-colors duration-500">
+      <div className="container mx-auto px-6">
+        <div className="grid md:grid-cols-12 gap-16 mb-24">
+          <div className="md:col-span-7 flex flex-col md:flex-row gap-12">
+            <div className="relative w-32 h-32 md:w-40 md:h-40">
+              {/* Light Mode Logo: Visible by default, hidden in dark mode */}
+              <Image
+                src={LogoLight}
+                alt="Titern"
+                fill
+                className="object-contain dark:hidden"
+                priority
+              />
 
-          <div>
-            <h4 className="text-xl font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><Link href="/about" className="hover:text-yellow-400 transition">About Us</Link></li>
-              <li><Link href="/products" className="hover:text-yellow-400 transition">Products</Link></li>
-              <li><Link href="/services" className="hover:text-yellow-400 transition">Services</Link></li>
-              <li><Link href="/contact" className="hover:text-yellow-400 transition">Contact</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-xl font-semibold mb-4">Contact Info</h4>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <Phone size={18} />
-                <span>+254 759 622 760</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail size={18} />
-                <span>info@titernconcretesolutions.co.ke</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Globe size={18} />
-                <span>www.titernconcretesolutions.com</span>
-              </div>
+              {/* Dark Mode Logo: Hidden by default, visible in dark mode */}
+              <Image
+                src={LogoDark}
+                alt="Titern"
+                fill
+                className="object-contain hidden dark:block"
+                priority
+              />
             </div>
+
+            <div className="border-l border-[var(--card-border)] pl-8 flex items-center">
+              <p className="text-sm uppercase tracking-widest italic opacity-60">
+                Engineering the foundation of Kenya&apos;s infrastructure with
+                precision-cast excellence.
+              </p>
+            </div>
+          </div>
+
+          <div className="md:col-span-2 flex flex-col gap-5 text-xs uppercase tracking-[0.25em] font-bold opacity-60">
+            <span className="opacity-100">Discovery</span>
+            <Link
+              href="/products"
+              className="hover:text-[var(--stroke-color)] transition-colors"
+            >
+              Our Products
+            </Link>
+            <Link
+              href="/services"
+              className="hover:text-[var(--stroke-color)] transition-colors"
+            >
+              The Portfolio
+            </Link>
+            <Link
+              href="/about"
+              className="hover:text-[var(--stroke-color)] transition-colors"
+            >
+              Our Legacy
+            </Link>
+          </div>
+
+          <div className="md:col-span-3 flex flex-col gap-5 text-xs uppercase tracking-[0.25em] font-bold opacity-60">
+            <span className="opacity-100">Connection</span>
+            <a
+              href="mailto:info@titernconcretesolutions.co.ke"
+              className="hover:text-[var(--stroke-color)] transition-colors normal-case"
+            >
+              info@titernconcretesolutions.co.ke
+            </a>
+            <span>Nairobi, Kenya</span>
+            <span className="opacity-100 text-lg">+254 759 622 760</span>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Titern Concrete Solutions Ltd. All rights reserved.</p>
+        <div className="flex justify-between border-t border-[var(--card-border)] pt-12 text-xs uppercase tracking-[0.4em] opacity-50">
+          <p>© {new Date().getFullYear()} Titern Concrete Solutions Ltd.</p>
+          <div className="flex gap-8">
+            <span className="hover:text-[var(--stroke-color)] cursor-pointer transition-colors">
+              Privacy Policy
+            </span>
+            <span className="hover:text-[var(--stroke-color)] cursor-pointer transition-colors">
+              Terms
+            </span>
+          </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

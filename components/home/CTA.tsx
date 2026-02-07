@@ -1,20 +1,39 @@
 export default function CTA() {
   return (
-    <section className="py-16 bg-gradient-to-r from-yellow-500 to-yellow-600">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Ready to Start Your Project?</h2>
-        <p className="text-xl mb-8 text-gray-900 max-w-2xl mx-auto">
-          Contact us today for enquiries, quotations, or partnerships
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="tel:+254759622760" className="bg-gray-900 hover:bg-black text-white font-bold py-3 px-8 rounded-lg transition">
-            Call Now: +254 759 622 760
+    <section className="py-32 bg-[var(--background)] border-t border-[var(--card-border)] relative overflow-hidden transition-colors duration-500">
+      <div className="container mx-auto px-6 text-center">
+        <h2 className="text-5xl md:text-7xl font-light mb-12 tracking-tight text-[var(--foreground)]">
+          Ready to{" "}
+          <span
+            className="italic font-serif"
+            style={{ color: "var(--stroke-color)" }}
+          >
+            build?
+          </span>
+        </h2>
+
+        <div className="inline-flex flex-col md:flex-row items-center border border-[var(--card-border)]">
+          {/* Primary */}
+          <a
+            href="tel:+254759622760"
+            className="px-12 py-6 font-bold uppercase tracking-tighter transition-all duration-500 w-full md:w-auto
+              bg-[var(--foreground)] text-[var(--background)]
+              hover:bg-[var(--stroke-color)] hover:text-white hover:scale-110"
+          >
+            Direct Line
           </a>
-          <a href="/contact" className="bg-white hover:bg-gray-100 text-gray-900 font-bold py-3 px-8 rounded-lg transition border-2 border-gray-900">
-            Send Message
+
+          {/* Secondary */}
+          <a
+            href="/contact"
+            className="px-12 py-6 font-bold uppercase tracking-tighter transition-all duration-500 w-full md:w-auto
+              text-[var(--foreground)]
+              hover:bg-[var(--stroke-color)] hover:text-white hover:scale-110"
+          >
+            Consultation
           </a>
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,106 +1,194 @@
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Image from "next/image";
+import {
+  Cul1,
+  Cul2,
+  Paving,
+  IBD,
+  RoadChannel,
+  RoadKerb,
+  ShallowDrain,
+  SideSlabs,
+  WallCopping,
+} from "@/public/assets";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function ProductsPage() {
-  const productCategories = [
+  const productData = [
+    { title: "Culvert Pipes", img: Cul1, speed: "0.15", category: "Drainage" },
     {
-      title: 'Road & Pavement Products',
-      products: [
-        { name: 'Road Kerbs', description: 'High-quality road kerbs for clear road demarcation' },
-        { name: 'Road Channels', description: 'Durable channels for effective water drainage' },
-        { name: 'Paving Slabs', description: 'Various sizes and designs for pedestrian pathways' },
-        { name: 'Cabro Blocks (80 mm)', description: 'Thick cabro blocks for heavy-duty applications' },
-        { name: 'Cabro Blocks (60 mm)', description: 'Standard cabro blocks for residential use' },
-        { name: 'Side Slabs', description: 'Sidewalk slabs for urban infrastructure' }
-      ]
+      title: "Paving Slabs",
+      img: Paving,
+      speed: "-0.08",
+      category: "Roadwork",
     },
     {
-      title: 'Drainage & Infrastructure Products',
-      products: [
-        { name: 'IBD 300 mm', description: 'Industrial drainage systems' },
-        { name: 'Shallow Drains', description: 'Surface water drainage solutions' },
-        { name: 'Culverts (300 mm)', description: 'Small culverts for minor drainage' },
-        { name: 'Culverts (450 mm)', description: 'Medium-sized culverts' },
-        { name: 'Culverts (600 mm)', description: 'Large culverts for major drainage' },
-        { name: 'Culverts (900 mm)', description: 'Extra-large culverts for highways' }
-      ]
+      title: "Inverted Block Drain",
+      img: IBD,
+      speed: "0.2",
+      category: "Infrastructure",
     },
     {
-      title: 'Coping & Finishing Products',
-      products: [
-        { name: 'Wall Coping', description: 'Decorative and protective wall coping' },
-        { name: 'Pillow Coping (400 mm)', description: 'Standard pillow coping for walls' }
-      ]
-    }
-  ]
+      title: "Road Channels",
+      img: RoadChannel,
+      speed: "0.1",
+      category: "Drainage",
+    },
+    {
+      title: "Heavy Duty Kerbs",
+      img: RoadKerb,
+      speed: "0.25",
+      category: "Infrastructure",
+    },
+    {
+      title: "Shallow Drains",
+      img: ShallowDrain,
+      speed: "-0.12",
+      category: "Drainage",
+    },
+    {
+      title: "Wall Coping",
+      img: WallCopping,
+      speed: "0.18",
+      category: "Finishing",
+    },
+    {
+      title: "Side Slabs",
+      img: SideSlabs,
+      speed: "0.06",
+      category: "Roadwork",
+    },
+    {
+      title: "Infrastructure 02",
+      img: Cul2,
+      speed: "0.22",
+      category: "Drainage",
+    },
+  ];
+
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      const cards = gsap.utils.toArray<HTMLElement>(".product-card");
+
+      cards.forEach((card) => {
+        const speed = parseFloat(card.dataset.speed || "0");
+        gsap.to(card, {
+          y: speed * 400,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+      });
+
+      gsap.from(".reveal-text", {
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: ".image-grid",
+          start: "top 90%",
+        },
+      });
+    });
+
+    return () => mm.revert();
+  }, []);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-gray-800 to-gray-600 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Products</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Wide range of high-quality precast concrete products
-          </p>
+    <main className="bg-[var(--background)] min-h-screen text-[var(--foreground)] overflow-hidden transition-colors duration-500">
+      <section className="relative z-10 pt-32 lg:pt-40 pb-32 lg:pb-60 px-4 md:px-6 container mx-auto">
+        {/* Header */}
+        <div className="mb-16 lg:mb-32 max-w-4xl">
+          <span className="reveal-text text-[var(--stroke-color)] uppercase tracking-[0.4em] text-[9px] lg:text-[10px] font-bold mb-4 block">
+            Our Inventory
+          </span>
+          <h1 className="reveal-text text-5xl sm:text-7xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.85]">
+            Structural <br />
+            <span
+              className="text-transparent italic"
+              style={{ WebkitTextStroke: "1px var(--stroke-color)" }}
+            >
+              Solutions
+            </span>
+          </h1>
         </div>
-      </section>
 
-      {/* Products Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Product Range</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              All products are manufactured using quality-approved raw materials and controlled production methods
-            </p>
-          </div>
-
-          {productCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="mb-16">
-              <h3 className="text-2xl font-bold mb-8 pb-4 border-b-2 border-yellow-500">
-                {category.title}
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.products.map((product, productIndex) => (
-                  <div key={productIndex} className="bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                    <div className="w-full h-48 bg-gray-100 mb-4 rounded-lg flex items-center justify-center">
-                      <div className="text-gray-400 text-center">
-                        <div className="text-5xl mb-2">🏗️</div>
-                        <p className="text-sm">Product Image</p>
-                      </div>
-                    </div>
-                    <h4 className="text-xl font-semibold mb-2">{product.name}</h4>
-                    <p className="text-gray-600 mb-4">{product.description}</p>
-                    <a href="/contact" className="text-yellow-600 font-semibold hover:text-yellow-700">
-                      Request Quote →
-                    </a>
-                  </div>
-                ))}
+        {/* Product Grid */}
+        <div className="image-grid grid grid-cols-12 gap-6 lg:gap-12">
+          {productData.map((product, i) => (
+            <div
+              key={i}
+              data-speed={product.speed}
+              className={`product-card relative overflow-hidden
+                bg-[color-mix(in srgb, var(--foreground) 6%, transparent)]
+                border border-[var(--card-border)] group
+                col-span-12
+                ${i % 3 === 0 ? "lg:col-span-7 h-[50vh] lg:h-[70vh]" : "lg:col-span-5 h-[45vh] lg:h-[60vh]"}
+                ${i === 1 ? "lg:mt-32" : ""}
+                ${i === 4 ? "lg:-mt-20" : ""}
+              `}
+            >
+              {/* Overlay */}
+              <div className="absolute inset-0 z-20 p-6 lg:p-8 flex flex-col justify-end bg-linear-to-t from-black via-black/40 to-transparent">
+                <span className="text-[var(--stroke-color)] text-[9px] lg:text-[10px] tracking-[0.4em] mb-2 font-bold uppercase">
+                  {product.category}
+                </span>
+                <h3 className="text-xl text-white lg:text-2xl font-light uppercase tracking-widest">
+                  {product.title}
+                </h3>
               </div>
+
+              {/* Image */}
+              <Image
+                src={product.img}
+                alt={product.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority={i < 2}
+                className="absolute inset-0 w-full h-full object-cover grayscale opacity-60
+                  lg:opacity-50 lg:group-hover:grayscale-0 lg:group-hover:opacity-100
+                  lg:group-hover:scale-105 transition-all duration-1000"
+              />
             </div>
           ))}
+        </div>
 
-          {/* Specifications */}
-          <div className="bg-gray-50 p-8 rounded-xl mt-12">
-            <h3 className="text-2xl font-bold mb-6">Quality Specifications</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="text-xl font-semibold mb-4">Key Features</h4>
-                <ul className="space-y-2">
-                  <li>• High compressive strength</li>
-                  <li>• Dimensional accuracy</li>
-                  <li>• Durability and weather resistance</li>
-                  <li>• Compliance with relevant construction standards</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold mb-4">Production Capability</h4>
-                <p className="text-gray-700">
-                  We have the capacity to handle small to large-scale supply requirements for both public and private sector projects. Our flexible production approach allows customization based on project specifications and timelines.
-                </p>
-              </div>
-            </div>
-          </div>
+        {/* Bottom CTA */}
+        <div className="mt-24 lg:mt-60 border-t border-[var(--card-border)] pt-16 lg:pt-20 text-center">
+          <p className="text-gray-500 uppercase tracking-[0.2em] text-[10px] mb-8">
+            Looking for custom specifications?
+          </p>
+          <a
+            href="/contact"
+            className="inline-block w-full md:w-auto px-10 py-5 
+    border border-[var(--stroke-color)] 
+    text-[var(--stroke-color)] 
+    hover:bg-[var(--stroke-color)] hover:text-white 
+    /* Fixed logic below */
+    hover:-translate-y-1 
+    transition-all duration-500 ease-in-out
+    uppercase text-[9px] tracking-[0.3em] font-bold"
+          >
+            Request Technical Data Sheet
+          </a>
         </div>
       </section>
-    </div>
-  )
+    </main>
+  );
 }
