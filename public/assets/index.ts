@@ -8,7 +8,10 @@ import RoadKerb from './Road_kerb.jpeg';
 import ShallowDrain from './Shallow_drain.jpeg';
 import SideSlabs from './Side_slabs.jpeg';
 import WallCopping from './Wall_copping300mm.jpeg';
-import Logo from './Logo2.2.jpeg'
+import Logo from './Logo2.2.jpeg';
+import BG from './bg.jpg';
+import BG2 from './bg2.jpg';
+
 
 
 
@@ -23,6 +26,8 @@ export {
    ShallowDrain,
    SideSlabs,
    WallCopping,
-   Logo
+   Logo,
+   BG,
+   BG2
 
 };
