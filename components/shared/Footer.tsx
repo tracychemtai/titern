@@ -1,86 +1,82 @@
+"use client";
 import Link from "next/link";
-import Image from "next/image";
-import LogoDark from "@/public/assets/Logo.png";
-import LogoLight from "@/public/assets/Logo2.2.png";
 
 export default function Footer() {
+  const links = [
+    { name: "Our Products", href: "/products" },
+    { name: "The Portfolio", href: "/services" },
+    { name: "Our Legacy", href: "/about" },
+  ];
+
   return (
-    <footer className="bg-[var(--background)] text-[var(--foreground)] pt-24 pb-12 border-t border-[var(--card-border)] transition-colors duration-500">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-12 gap-16 mb-24">
-          <div className="md:col-span-7 flex flex-col md:flex-row gap-12">
-            <div className="relative w-32 h-32 md:w-40 md:h-40">
-              {/* Light Mode Logo: Visible by default, hidden in dark mode */}
-              <Image
-                src={LogoLight}
-                alt="Titern"
-                fill
-                className="object-contain dark:hidden"
-                priority
-              />
-
-              {/* Dark Mode Logo: Hidden by default, visible in dark mode */}
-              <Image
-                src={LogoDark}
-                alt="Titern"
-                fill
-                className="object-contain hidden dark:block"
-                priority
-              />
+    <footer className="bg-transparent text-white pt-20 pb-16 relative border-t border-white/5">
+      <div className="container mx-auto px-8 md:px-16 relative z-10">
+        <div className="grid md:grid-cols-12 gap-16 items-start">
+          
+          {/* Brand & Identity */}
+          <div className="md:col-span-5 space-y-8">
+            <div className="text-2xl font-serif tracking-tight font-bold">
+              TITERN<span className="font-light italic text-[#4A69BD]">CONCRETE</span>
             </div>
+            <p className="max-w-sm text-[#BDC3C7] text-xs leading-loose font-light uppercase tracking-widest opacity-60">
+              Leading Kenya’s infrastructure through <br /> high-precision precast engineering.
+            </p>
+          </div>
 
-            <div className="border-l border-[var(--card-border)] pl-8 flex items-center">
-              <p className="text-sm uppercase tracking-widest italic opacity-60">
-                Engineering the foundation of Kenya&apos;s infrastructure with
-                precision-cast excellence.
+          {/* Navigation with Reveal Hovers */}
+          <div className="md:col-span-3">
+            <h4 className="text-[#4A69BD] text-[10px] uppercase tracking-[0.4em] font-bold mb-8">Navigation</h4>
+            <ul className="space-y-5">
+              {links.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="group flex items-center gap-3 text-sm font-light tracking-wide text-[#BDC3C7] hover:text-white transition-all duration-500"
+                  >
+                    {/* Animated Line Hook */}
+                    <span className="w-0 h-px bg-[#4A69BD] group-hover:w-4 transition-all duration-500"></span>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Location & Digital Contact */}
+          <div className="md:col-span-4">
+            <h4 className="text-[#4A69BD] text-[10px] uppercase tracking-[0.4em] font-bold mb-8">Headquarters</h4>
+            <div className="space-y-6">
+              <p className="text-sm font-light text-[#BDC3C7] leading-relaxed">
+                Nairobi, Kenya <br />
+                Industrial Area, Phase II
               </p>
+              <a
+                href="mailto:info@titernconcretesolutions.co.ke"
+                className="inline-block text-[8px] font-bold uppercase tracking-[0.2em] text-white hover:text-[#4A69BD] transition-colors border-b border-[#4A69BD] pb-1"
+              >
+                info@titernconcretesolutions.co.ke
+              </a>
             </div>
-          </div>
-
-          <div className="md:col-span-2 flex flex-col gap-5 text-xs uppercase tracking-[0.25em] font-bold opacity-60">
-            <span className="opacity-100">Discovery</span>
-            <Link
-              href="/products"
-              className="hover:text-[var(--stroke-color)] transition-colors"
-            >
-              Our Products
-            </Link>
-            <Link
-              href="/services"
-              className="hover:text-[var(--stroke-color)] transition-colors"
-            >
-              The Portfolio
-            </Link>
-            <Link
-              href="/about"
-              className="hover:text-[var(--stroke-color)] transition-colors"
-            >
-              Our Legacy
-            </Link>
-          </div>
-
-          <div className="md:col-span-3 flex flex-col gap-5 text-xs uppercase tracking-[0.25em] font-bold opacity-60">
-            <span className="opacity-100">Connection</span>
-            <a
-              href="mailto:info@titernconcretesolutions.co.ke"
-              className="hover:text-[var(--stroke-color)] transition-colors normal-case"
-            >
-              info@titernconcretesolutions.co.ke
-            </a>
-            <span>Nairobi, Kenya</span>
-            <span className="opacity-100 text-lg">+254 759 622 760</span>
           </div>
         </div>
 
-        <div className="flex justify-between border-t border-[var(--card-border)] pt-12 text-xs uppercase tracking-[0.4em] opacity-50">
-          <p>© {new Date().getFullYear()} Titern Concrete Solutions Ltd.</p>
+        {/* Bottom Utility Bar */}
+        <div className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between gap-8">
+          <div className="flex gap-10">
+            <p className="text-[9px] uppercase tracking-[0.4em] text-[#BDC3C7]/40">
+              © {new Date().getFullYear()} Titern Concrete Solutions
+            </p>
+          </div>
+          
           <div className="flex gap-8">
-            <span className="hover:text-[var(--stroke-color)] cursor-pointer transition-colors">
-              Privacy Policy
-            </span>
-            <span className="hover:text-[var(--stroke-color)] cursor-pointer transition-colors">
-              Terms
-            </span>
+            {["Privacy", "Terms"].map((item) => (
+              <span 
+                key={item}
+                className="text-[9px] uppercase tracking-[0.4em] text-[#BDC3C7]/40 hover:text-white cursor-pointer transition-all duration-300"
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </div>
       </div>
