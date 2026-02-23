@@ -52,7 +52,7 @@ export default function CTA() {
           </div>
 
           {/* Right Image - Hidden on Mobile, Visible on Large Screens */}
-          <div className="hidden lg:block lg:col-span-3 flex justify-end">
+          <div className="hidden lg:block lg:col-span-3  justify-end">
             <div className="relative w-full aspect-3/4 overflow-hidden rounded-tl-[200px] rounded-bl-[200px] shadow-2xl shadow-black/5">
               <Image
                 src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80"

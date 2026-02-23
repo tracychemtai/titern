@@ -16,7 +16,6 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "/" },
     { name: "Products", href: "/products" },
     { name: "Portfolio", href: "/services" },
     { name: "About", href: "/about" },
@@ -59,7 +58,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav - Home is excluded */}
           <div className="hidden md:flex items-center gap-12">
             {navLinks.map((link) => (
               <Link
@@ -75,15 +74,15 @@ export default function Navbar() {
               </Link>
             ))}
 
+            {/* Desktop Contact Button - Always blue bg with white text, hover white bg with blue text */}
             <Link
               href="/contact"
-              className={`px-10 py-4 text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-500 rounded-sm hover:scale-110 active:scale-95 shadow-sm ${
-                isScrolled
-                  ? "bg-[#1A365D] text-white hover:bg-[#4A69BD]"
-                  : "bg-white text-[#1A365D] hover:shadow-xl"
-              }`}
+              className="group relative overflow-hidden px-10 py-4 text-[10px] uppercase tracking-[0.3em] font-bold rounded-sm shadow-sm transition-all duration-500 hover:scale-110 active:scale-95 bg-[#1A365D]"
             >
-              Get Quote
+              <span className="absolute inset-0 w-full h-full bg-white transition-all duration-500 ease-in-out -translate-x-full group-hover:translate-x-0" />
+              <span className="relative z-10 text-white transition-colors duration-500 group-hover:text-[#1A365D]">
+                Get Quote
+              </span>
             </Link>
           </div>
 
@@ -109,7 +108,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* MOBILE SIDEBAR */}
+      {/* MOBILE SIDEBAR - Home is included here */}
       <div
         className={`fixed inset-0 z-40 transition-all duration-700 ${
           isSidebarOpen ? "visible opacity-100" : "invisible opacity-0"
@@ -121,6 +120,16 @@ export default function Navbar() {
             isSidebarOpen ? "translate-y-0" : "translate-y-12"
           }`}
         >
+          {/* Home link - only in mobile sidebar */}
+          <Link
+            href="/"
+            onClick={() => setIsSidebarOpen(false)}
+            className="text-4xl font-serif italic text-[#1A365D] opacity-40 hover:opacity-100 hover:scale-110 transition-all duration-500"
+          >
+            Home
+          </Link>
+          
+          {/* Other navigation links */}
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -131,12 +140,17 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+          
+          {/* Mobile sidebar contact button - Blue bg with white text, hover white bg with blue text */}
           <Link
             href="/contact"
             onClick={() => setIsSidebarOpen(false)}
-            className="mt-8 px-12 py-5 bg-[#1A365D] text-white text-xs uppercase tracking-[0.4em] font-bold hover:scale-110 transition-transform"
+            className="group relative overflow-hidden mt-8 px-12 py-5 text-xs uppercase tracking-[0.4em] font-bold rounded-sm shadow-xl transition-all duration-500 hover:scale-110 active:scale-95 bg-[#1A365D]"
           >
-            Get a Quote
+            <span className="absolute inset-0 w-full h-full bg-white transition-all duration-500 ease-in-out -translate-x-full group-hover:translate-x-0" />
+            <span className="relative z-10 text-white transition-colors duration-500 group-hover:text-[#1A365D]">
+              Get a Quote
+            </span>
           </Link>
         </div>
       </div>
